@@ -1,1 +1,7 @@
 transition_id,issue_id,from_episode,to_episode,transition_date,notes
+"DIBO-JP-0001-T001","DIBO-JP-0001","DIBO-JP-0001-E001","DIBO-JP-0001-E002","2019-04-24","Issue-level policy uptake: the 2019 law followed the first action and addressed the same redress problem; this is not coded as a formal referral or single-cause relationship."
+"DIBO-JP-0001-T002","DIBO-JP-0001","DIBO-JP-0001-E002","DIBO-JP-0001-E003","2019-04-24","The statutory lump-sum payment pathway moved into administrative implementation on its effective date."
+"DIBO-JP-0001-T003","DIBO-JP-0001","DIBO-JP-0001-E001","DIBO-JP-0001-E004","2024-07-03","Judicial continuation: the Sendai action proceeded through appeals to the Grand Bench; intermediate rulings are omitted from this deliberately small Episode set."
+"DIBO-JP-0001-T004","DIBO-JP-0001","DIBO-JP-0001-E004","DIBO-JP-0001-E005","2024-07-17","Official executive response to the Grand Bench judgments: the Prime Minister apologized and stated directions for settlements and a new compensation framework."
+"DIBO-JP-0001-T005","DIBO-JP-0001","DIBO-JP-0001-E004","DIBO-JP-0001-E006","2024-10-08","The statute's official summary expressly references the 2024 Grand Bench judgments and acknowledges responsibility; this records legislative response, not a single-cause claim."
+"DIBO-JP-0001-T006","DIBO-JP-0001","DIBO-JP-0001-E006","DIBO-JP-0001-E007","2025-01-17","The statutory compensation scheme moved into administrative implementation on its effective date."
