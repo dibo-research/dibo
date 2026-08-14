@@ -157,7 +157,7 @@ Evaluative constructs are not direct properties of the canonical graph. They may
 
 ### Definition
 
-Institutional Runaround is a pattern in which a public issue is repeatedly redirected, reassigned, returned, or displaced among institutional actors while no actor provides a substantive disposition, and the routing does not demonstrably move the issue through a necessary path toward an actor or process capable of authoritative decision, remedy, or implementation.
+Institutional Runaround is a pattern within a defined observed sequence in which the specific request, remedy, responsibility question, or explicitly scoped aspect being tracked is repeatedly redirected, reassigned, returned, or displaced among institutional actors while no actor provides a substantive disposition of that tracked matter, and the routing does not demonstrably move it through a necessary path toward an actor or process capable of authoritative decision, remedy, or implementation.
 
 The central idea is movement without corresponding authoritative uptake or disposition. This is not reducible to a progress score.
 
@@ -182,7 +182,7 @@ No numerical Runaround score is defined. A future assessment must use exactly `E
 Classify an observed sequence as `ESTABLISHED` only when all of the following are source-grounded:
 
 1. A connected observed sequence contains at least two documented redirections or responsibility displacements among distinct institutional actors or units.
-2. The relevant redirection sequence contains no substantive disposition of the issue being tracked.
+2. The relevant sequence contains no substantive disposition of the specific request, remedy, responsibility question, or explicitly scoped aspect being assessed.
 3. Ordinary procedurally necessary routing toward authoritative consideration does not adequately explain the sequence.
 4. At least one of these additional conditions holds:
    - the issue returns to a previously encountered actor or institutional location without an intervening substantive disposition; or
@@ -198,7 +198,7 @@ Use `INDETERMINATE` when evidence is insufficient to determine whether a transfe
 
 ### Sequence-level scope
 
-Runaround may characterize a particular observed sequence within an Issue Lineage; it need not characterize the whole lineage. A future analysis should identify the start and end Episodes, included Episodes and Transitions, source evidence, and classification. V0.1 does not implement a storage format.
+Runaround may characterize a particular observed sequence within an Issue Lineage; it need not characterize the whole lineage. Every future assessment must identify the specific request, remedy, responsibility question, or explicitly scoped aspect being tracked, as well as the start and end Episodes, included Episodes and Transitions, source evidence, and classification. V0.1 does not implement a storage format.
 
 ### Exclusions
 
@@ -223,7 +223,9 @@ Multiple institutional proposals responding to the same problem are not inherent
 
 ### Uncertainty
 
-Derived analysis must preserve uncertainty through terms such as `UNKNOWN`, `INDETERMINATE`, and *not observed* rather than force a binary inference. An absent Episode does not prove institutional inactivity; an absent Transition does not prove that no communication or influence occurred; and absent evidence of formal referral does not prove that no informal influence existed. DIBO reports what the recorded evidence supports.
+The final Institutional Runaround classification has exactly three permitted values: `ESTABLISHED`, `NOT_ESTABLISHED`, and `INDETERMINATE`. `UNKNOWN` and *not observed* are not additional final classification states; they may be used only for individual evidence elements, derived coding fields, or unavailable observations.
+
+Derived analysis must preserve uncertainty rather than force a binary inference. An absent Episode does not prove institutional inactivity; an absent Transition does not prove that no communication or influence occurred; and absent evidence of formal referral does not prove that no informal influence existed. DIBO reports what the recorded evidence supports.
 
 ## Reproducibility
 
