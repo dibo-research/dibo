@@ -2,9 +2,9 @@
 
 ## Scope
 
-This registered lineage begins with the Minister of Justice's formal referral of Question No. 129 to the Legislative Council on 2025-03-28. It follows the government reform process through the Council's response, submission and enactment of the government bill, and the first partial commencement of Act No. 67 of 2026. Earlier retrial cases, advocacy, parliamentary groups, and members' bills are relevant background but are outside this deliberately narrow canonical boundary.
+This registered lineage begins with the Minister of Justice's formal referral of Question No. 129 to the Legislative Council on 2025-03-28. It follows the government reform process through the Council's response, submission of the government bill, and enactment of Act No. 67 of 2026. Earlier retrial cases, advocacy, parliamentary groups, and members' bills are relevant background but are outside this deliberately narrow canonical boundary.
 
-The lineage ends at the latest observed institutional state. Full commencement of the principal procedural rules and their application in an identifiable judicial proceeding should be added only when each becomes observable from an official source.
+The canonical lineage currently ends with enactment. The automatic partial commencement on 2026-08-13 is retained as an Outcome and current status rather than a separate Episode. A Cabinet order setting the principal commencement date or application in an identifiable judicial proceeding should be added only when the corresponding institutional action becomes observable from an official source.
 
 ## Why this is one Issue Lineage
 
@@ -16,7 +16,6 @@ The Administrative and Legislative Episodes address the same public problem: whe
 - 2026-02-12 — `A` — The Legislative Council adopted its response by majority and submitted it to the Minister.
 - 2026-05-15 — `A` — The Cabinet approved and submitted the government bill.
 - 2026-07-17 — `L` — The Diet completed enactment of the House-amended bill; it was promulgated on 2026-07-24 as Act No. 67 of 2026.
-- 2026-08-13 — `L` — The first group of amendments entered force under the Act's staged commencement clause.
 
 ## Sources
 
@@ -28,10 +27,12 @@ The Administrative and Legislative Episodes address the same public problem: whe
 
 ## Status
 
-Act No. 67 of 2026 has been enacted and promulgated. The first group of amendments entered force on 2026-08-13, including conditions and 14-day filing periods for appeals from specified retrial-related decisions and government publication duties. The principal rules on evidence production, retrial-request screening and adjudication, judicial disqualification, and other procedures await a commencement date to be set by Cabinet order within one year of promulgation. No judicial application of those principal rules is yet recorded in this lineage.
+Act No. 67 of 2026 was enacted on 2026-07-17 and promulgated on 2026-07-24. Its first group became partially effective automatically on 2026-08-13, including conditions and 14-day filing periods for appeals from specified retrial-related decisions and government publication duties. The principal procedural amendments still await a commencement date to be set by Cabinet order within one year of promulgation. Observed judicial operation has not yet been recorded in this lineage.
 
 **Status checked: 2026-08-14**
 
 ## Methodological note
 
-JP-0003 distinguishes enactment, promulgation, partial commencement, full commencement, and observed judicial operation. The first three are now observable; full commencement and judicial operation are not. These states are recorded through dated Episodes and Outcomes rather than a new status taxonomy or schema field.
+Not every legally significant state change is a canonical Episode. A status transition without a new observable institutional action may be recorded as an Outcome/current status instead.
+
+Accordingly, JP-0003 records the Diet's enactment as E004 and retains the automatic 2026-08-13 partial commencement in E004's Outcome and the current status. Principal commencement and observed judicial operation remain unrecorded until a corresponding institutional action is observable.
