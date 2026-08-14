@@ -14,3 +14,7 @@ Canonical observations remain unchanged. Topology and temporal measures describe
 In particular, Institutional Runaround cannot be inferred from movement, branching, or elapsed time alone.
 
 See the [DIBO Derived Analysis Protocol](PROTOCOL.md) for the v0.1 rules and limitations.
+
+## Executable support
+
+Version v0.1 executable support covers Layer 1 and Layer 2 only. See the [Derived Analysis Protocol](PROTOCOL.md), [engine documentation](ENGINE.md), and [Python engine](engine.py). Layer 3 remains evidence-based and non-automated.
