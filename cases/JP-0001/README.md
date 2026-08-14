@@ -26,14 +26,14 @@ The judicial, legislative, and administrative Episodes concern the same underlyi
 - [Ministry of Health, Labour and Welfare — implementation notice for the 2019 lump-sum payment law (2019-04-24)](https://www.mhlw.go.jp/web/t_doc?dataId=00tc4177&dataType=1&pageNo=1)
 - [Children and Families Agency — Minister Kato press conference documenting the 2024-07-17 meeting (2024-07-19)](https://www.cfa.go.jp/speech/48f039fd)
 - [House of Councillors — legislative history and summary of the 2024 compensation law](https://www.sangiin.go.jp/japanese/joho1/kousei/gian/214/meisai/m214090214004.htm)
-- [Children and Families Agency — implementation status of the compensation law, data through 2026-04 (2026-05-26)](https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/8c416afe-520a-4a3d-967e-ee6d3ff13c58/2740f0c1/20260708_kyuyusei-hoshokin_147.pdf)
+- [Children and Families Agency — implementation status of the compensation law, data through 2026-06](https://www.cfa.go.jp/kyuyusei-hoshokin)
 - [Children and Families Agency — Compensation and Eugenic Surgery Lump-Sum Recognition Subcommittee](https://www.cfa.go.jp/councils/hoshokin-yuseishujutsu)
 
 ## Status
 
-The compensation scheme remains operational. Official data through 2026-04 reported 2,616 claims and 1,848 recognitions, and the compensation and eugenic-surgery recognition subcommittee continued meeting through 2026-07-16.
+The compensation scheme remains operational. Official data through 2026-06 reported 2,710 claims and 1,965 recognitions, and the compensation and eugenic-surgery recognition subcommittee continued meeting through 2026-07-16.
 
-**Status checked: 2026-08-12**
+**Status checked: 2026-08-14**
 
 ## Methodological note
 
