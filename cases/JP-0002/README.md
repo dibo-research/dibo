@@ -4,18 +4,19 @@
 
 This lineage begins when the first stage of the disputed 2013 livelihood-assistance standard revision became applicable on 2013-08-01. The Ministry's administrative notice was issued on 2013-05-16, but the applicability date is used because it is the first observable operation of the revised standard. The lineage follows selected Osaka and Nagoya challenges through the 2025 Supreme Court judgments and the subsequent additional-payment response.
 
-The scope is limited to the 2013–15 revision and its remedy pathway. DIBO does not encode every lawsuit nationwide. The Osaka and Nagoya paths are retained because they connect directly to the two Supreme Court cases represented by the canonical Supreme Court Episode.
+The scope is limited to the 2013–15 revision and its remedy pathway. DIBO does not encode every lawsuit nationwide. The Osaka and Nagoya paths are retained because they connect directly to the two separate Supreme Court judgments represented by the canonical Supreme Court Episodes.
 
 ## Why this is one Issue Lineage
 
-The administrative revision, the selected challenges to benefit-modification decisions based on it, the Supreme Court's legality review, and the later payment response all concern the same disputed standard-setting action and its institutional remedy. The judicial paths remain distinct until they reach the Supreme Court Episode; the later administrative, budgetary, and implementation Episodes record different institutional states rather than treating the judgment itself as complete resolution.
+The administrative revision, the selected challenges to benefit-modification decisions based on it, the two Supreme Court legality judgments, and the later payment response all concern the same disputed standard-setting action and its institutional remedy. The judicial paths remain distinct through separate Supreme Court Episodes. Both judgments feed into the later common Ministry response; the subsequent administrative, budgetary, and implementation Episodes record different institutional states rather than treating either judgment itself as complete resolution.
 
 ## Timeline
 
 - 2013-08-01 — A — Ministry of Health, Labour and Welfare — the first stage of the revised livelihood-assistance standards became applicable.
 - 2023-04-14 — J — Osaka High Court — the selected Osaka appeal resulted in judgment for the government and municipalities.
 - 2023-11-30 — J — Nagoya High Court — the selected Nagoya appeal resulted in judgment against the government and municipalities.
-- 2025-06-27 — J — Supreme Court of Japan, Third Petty Bench — the Court held the revision unlawful, cancelled the claimants' modification decisions, and rejected State Redress Act damages.
+- 2025-06-27 — J — Supreme Court of Japan, Third Petty Bench — the Osaka judgment held the revision unlawful, cancelled the Osaka claimants' modification decisions, and rejected State Redress Act damages.
+- 2025-06-27 — J — Supreme Court of Japan, Third Petty Bench — the Nagoya judgment held the revision unlawful, cancelled the Nagoya claimants' modification decisions, and rejected State Redress Act damages.
 - 2025-11-21 — A — Ministry of Health, Labour and Welfare — the government published its additional-payment response direction.
 - 2025-12-16 — L — National Diet of Japan — the Diet approved the FY2025 supplementary budget containing implementation expenditure.
 - 2026-03-01 — A — Ministry and local public-assistance authorities — the special standard became applicable and additional-payment administration began.
@@ -40,6 +41,6 @@ The additional-payment response is under administrative implementation. The Mini
 
 ## Methodological note
 
-JP-0002 tests whether the minimal graph can encode multiple judicial pathways, same-Line appeals, convergence into a later Judicial Episode, administrative response, legislative budget authorization, and administrative implementation. Intermediate District Court judgments, appeal filings, committee meetings, and implementation documents are omitted because the selected Episodes are sufficient to preserve the institutional state changes. Convergence is represented by two ordinary transitions into the Supreme Court Episode, and the supplementary budget is coded `L` because the Diet authorized expenditure rather than enacted a new compensation statute.
+JP-0002 tests whether the minimal graph can encode multiple judicial pathways, same-Line appeals, separate same-day Supreme Court judgments, a later common administrative response, legislative budget authorization, and administrative implementation. Intermediate District Court judgments, appeal filings, committee meetings, and implementation documents are omitted because the selected Episodes are sufficient to preserve the institutional state changes. The two Supreme Court judgments remain separate primary observations, with ordinary transitions from each judgment into the common Ministry response. Any classification such as parallel judicial outcomes, decision-arena convergence, or convergence remains derived analysis. The supplementary budget is coded `L` because the Diet authorized expenditure rather than enacted a new compensation statute.
 
 These patterns are reconstructed from Episodes and Transitions and are not additional contributor-facing classifications.
