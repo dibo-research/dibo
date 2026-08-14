@@ -15,6 +15,7 @@ from typing import Iterable, Sequence
 
 
 DERIVED_PROTOCOL_VERSION = "v0.1"
+ENGINE_VERSION = "v0.1"
 LINES = ("L", "A", "J")
 LINE_PAIRS = tuple(f"{from_line}->{to_line}" for from_line in LINES for to_line in LINES)
 IDENTIFIER_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
@@ -179,10 +180,10 @@ def load_and_validate(data_dir: str | Path) -> tuple[
     return issues, episodes, transitions
 
 
-def _git_ref(data_dir: Path) -> str:
+def _git_ref(path: Path) -> str:
     try:
         completed = subprocess.run(
-            ["git", "-C", str(data_dir.resolve()), "rev-parse", "HEAD"],
+            ["git", "-C", str(path.resolve()), "rev-parse", "HEAD"],
             check=True,
             capture_output=True,
             text=True,
@@ -227,6 +228,7 @@ def derive_analysis(
     *,
     as_of_date: date | None = None,
     selected_issues: Sequence[str] | None = None,
+    analysis_code_ref: str = "unknown",
     canonical_data_ref: str = "unknown",
 ) -> dict[str, object]:
     """Derive deterministic Layer 1 and Layer 2 descriptions from validated rows."""
@@ -394,9 +396,11 @@ def derive_analysis(
     return {
         "issues": output_issues,
         "metadata": {
+            "analysis_code_ref": analysis_code_ref,
             "as_of_date": as_of_date.isoformat() if as_of_date else None,
             "canonical_data_ref": canonical_data_ref,
             "derived_protocol_version": DERIVED_PROTOCOL_VERSION,
+            "engine_version": ENGINE_VERSION,
         },
     }
 
@@ -410,6 +414,7 @@ def analyze(
     """Load, validate, and derive a complete analysis document."""
 
     directory = Path(data_dir)
+    engine_repository_root = Path(__file__).resolve().parent.parent
     issues, episodes, transitions = load_and_validate(directory)
     return derive_analysis(
         issues,
@@ -417,6 +422,7 @@ def analyze(
         transitions,
         as_of_date=as_of_date,
         selected_issues=selected_issues,
+        analysis_code_ref=_git_ref(engine_repository_root),
         canonical_data_ref=_git_ref(directory),
     )
 

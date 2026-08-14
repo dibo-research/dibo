@@ -20,7 +20,9 @@ It fails with a non-zero exit code for invalid canonical headers, identifiers, L
 
 JSON is written to stdout by default, with two-space indentation and sorted keys. Issues are ordered by `issue_id`, nodes by `episode_id`, and edges by `transition_id`. `--output` writes the same representation to a file. No output file is created by default.
 
-`lineage_age_days` is `null` unless an explicit `--as-of-date` is supplied. An as-of date before a selected Issue's `start_date` is a validation error. The metadata records the Git `HEAD` containing the data when available, or `unknown` outside a Git checkout.
+`lineage_age_days` is `null` unless an explicit `--as-of-date` is supplied. An as-of date before a selected Issue's `start_date` is a validation error.
+
+Metadata records two independent Git references when available. `analysis_code_ref` identifies the exact engine repository state containing `analysis/engine.py`; `canonical_data_ref` identifies the repository state containing the analyzed canonical data. The two may differ when `--data-dir` selects data from another Git checkout. Either value is `unknown` when its Git metadata is unavailable. Metadata also records `derived_protocol_version`, `engine_version`, and the explicit `as_of_date` or `null`.
 
 Latency summaries contain `count`, `min_days`, `max_days`, and `mean_days`; means are rounded to two decimal places. Negative edge latency remains visible on the edge and produces a Transition-specific data-integrity warning, but is excluded from summary statistics. Structural warnings, including multiple weakly connected components and an Issue with no canonical Episodes, are observations rather than evaluations.
 

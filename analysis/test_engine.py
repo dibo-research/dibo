@@ -110,7 +110,8 @@ class EngineTests(unittest.TestCase):
             *rows,
             as_of_date=as_of_date,
             selected_issues=selected_issues,
-            canonical_data_ref="test-ref",
+            analysis_code_ref="test-engine-ref",
+            canonical_data_ref="test-data-ref",
         )
 
     def test_simple_linear_cross_line_graph(self) -> None:
@@ -260,7 +261,16 @@ class EngineTests(unittest.TestCase):
         )
         second = json.loads(engine.render_json(first))
         self.assertEqual(first, second)
-        self.assertEqual(first["metadata"]["derived_protocol_version"], "v0.1")
+        self.assertEqual(
+            first["metadata"],
+            {
+                "analysis_code_ref": "test-engine-ref",
+                "as_of_date": None,
+                "canonical_data_ref": "test-data-ref",
+                "derived_protocol_version": "v0.1",
+                "engine_version": "v0.1",
+            },
+        )
         self.assertEqual([node["episode_id"] for node in first["issues"][0]["nodes"]], ["E1", "E2"])
         self.assertEqual(engine.render_json(first), engine.render_json(second))
 
