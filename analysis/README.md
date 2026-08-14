@@ -1,18 +1,16 @@
 # Derived Analysis
 
-This directory is reserved for reproducible analysis derived from the primary observations in [`../data/`](../data/).
+DIBO separates primary observation from derived analysis:
 
-Possible future measures or classifications include:
+```text
+Primary observation
+  → Descriptive topology
+  → Temporal description
+  → Evaluative constructs
+```
 
-- Institutional Runaround;
-- Referral-to-Uptake Latency;
-- Resolution Latency;
-- Branch and Convergence;
-- Judicial Re-entry;
-- Stall and Open Cycle;
-- Remedy Reframing; and
-- Translation Loss.
+Canonical observations remain unchanged. Topology and temporal measures describe recorded structure and time; they do not evaluate institutional quality. Evaluative constructs require explicit rules and additional source-grounded evidence.
 
-These concepts are not mandatory contributor fields. Any future analysis should identify its input records, document its method and assumptions, preserve uncertainty, and leave the primary observational data unchanged.
+In particular, Institutional Runaround cannot be inferred from movement, branching, or elapsed time alone.
 
-No analytical results are asserted in the pilot scaffold.
+See the [DIBO Derived Analysis Protocol](PROTOCOL.md) for the v0.1 rules and limitations.
