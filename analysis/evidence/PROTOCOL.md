@@ -55,6 +55,20 @@ Evidence records use existing canonical units as anchors:
 | `PROCEDURALLY_NECESSARY_ROUTING` | `TRANSITION` |
 | `RESPONSIBILITY_DISPLACEMENT` | `TRANSITION` |
 
+The complete expected unit-by-concept matrix applies to every frozen Assessment Scope and to every coder:
+
+- every included Episode receives exactly one `SUBSTANTIVE_DISPOSITION` code;
+- every included Transition receives exactly one `DOCUMENTED_REDIRECTION` code, one `PROCEDURALLY_NECESSARY_ROUTING` code, and one `RESPONSIBILITY_DISPLACEMENT` code;
+- every eligible unit-concept pair receives exactly one of `YES`, `NO`, or `INDETERMINATE`.
+
+If `E` is the number of included Episodes and `T` is the number of included Transitions, the expected number of evidence records per coder is:
+
+```text
+E + (3 * T)
+```
+
+This is a completeness rule, not a new data schema. A missing record is not `INDETERMINATE`; it makes the coding sheet incomplete. If a unit should not be assessed for the frozen tracked matter, revise and resolve the Assessment Scope before independent coding rather than omitting the unit-concept pair or adding another coding value.
+
 Evidence coding must not invent primary Episodes or Transitions. A factual error discovered during coding belongs in the separate DIBO correction process.
 
 ## Evidence record
@@ -144,7 +158,11 @@ Version v0.1 establishes no universal acceptance threshold. It defines a coding 
 
 ## AI assistance
 
-AI may assist document discovery, source navigation, candidate-passage extraction, and coding-sheet formatting. AI output must not silently become a final human evidence code. Final codes used for inter-rater reliability or evaluative research claims must be assigned or explicitly verified by human coders. An AI agent is not an independent human coder.
+AI may assist document discovery, source navigation, candidate-passage extraction, and coding-sheet formatting. Human coders may verify AI-retrieved source passages.
+
+In a formal independent human reliability exercise, AI must not present a recommended `YES`, `NO`, or `INDETERMINATE` code to coders before their ratings are locked. Each coder must independently assign the categorical evidence code. Human verification of an AI-proposed final categorical code is not sufficient for an independent-human reliability claim.
+
+If coders see AI-generated categorical recommendations, resulting agreement must not be described as independent human inter-rater reliability unless the research design explicitly studies AI-assisted coding. An AI agent is not an independent human coder.
 
 If AI materially assists retrieval or preparation, document that role in study methods.
 

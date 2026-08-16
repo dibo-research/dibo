@@ -6,6 +6,12 @@ Code only the frozen Assessment Scope and the tracked matter stated in it. Ancho
 
 The evidence concepts are independent questions. Assign each applicable concept separately; never use one code as an automatic substitute for another or as an Institutional Runaround classification.
 
+### Complete coding matrix
+
+For each coder, every Episode included in the frozen Assessment Scope must have one `SUBSTANTIVE_DISPOSITION` record. Every included Transition must have three records: one each for `DOCUMENTED_REDIRECTION`, `PROCEDURALLY_NECESSARY_ROUTING`, and `RESPONSIBILITY_DISPLACEMENT`.
+
+Each eligible unit-concept pair must receive exactly one of the three evidence codes below. The expected record count per coder is `E + (3 * T)`, where `E` is the number of included Episodes and `T` is the number of included Transitions. A missing pair is an incomplete coding sheet, not an `INDETERMINATE` code. If a pair should not be assessed for the tracked matter, resolve that as an Assessment Scope problem before independent coding; do not omit the pair or add another coding value.
+
 ## YES / NO / INDETERMINATE
 
 - `YES`: the available evidence positively supports the concept for the coding unit and tracked matter.
@@ -63,4 +69,4 @@ Absence of positive evidence, silence, and missing evidence are not automaticall
 | Missing evidence is not `NO` | Use `INDETERMINATE` when evidence is inadequate. |
 | `INDETERMINATE` is not disagreement | Matching independent `INDETERMINATE` ratings count as agreement. |
 | Evidence coding is not evaluative assessment | No evidence code, alone or in combination here, produces a Runaround classification. |
-| AI-assisted retrieval is not independent human coding | A human must assign or explicitly verify final codes; an AI agent is not a human coder. |
+| AI-assisted retrieval is not independent human coding | In formal reliability coding, humans may verify retrieved passages but must independently assign categories without seeing AI code recommendations before ratings are locked. Verifying an AI-proposed category is insufficient. |
