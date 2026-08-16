@@ -1,0 +1,737 @@
+{
+  "issues": [
+    {
+      "cross_line_latency": {
+        "count": 5,
+        "max_days": 449,
+        "mean_days": 132.2,
+        "min_days": 0
+      },
+      "edges": [
+        {
+          "cross_line": true,
+          "edge_latency_days": 449,
+          "from_episode": "DIBO-JP-0001-E001",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0001-E002",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0001-T001"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 0,
+          "from_episode": "DIBO-JP-0001-E002",
+          "from_line": "L",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0001-E003",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0001-T002"
+        },
+        {
+          "cross_line": false,
+          "edge_latency_days": 2346,
+          "from_episode": "DIBO-JP-0001-E001",
+          "from_line": "J",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0001-E004",
+          "to_line": "J",
+          "transition_id": "DIBO-JP-0001-T003"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 14,
+          "from_episode": "DIBO-JP-0001-E004",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0001-E005",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0001-T004"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 97,
+          "from_episode": "DIBO-JP-0001-E004",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0001-E006",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0001-T005"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 101,
+          "from_episode": "DIBO-JP-0001-E006",
+          "from_line": "L",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0001-E007",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0001-T006"
+        }
+      ],
+      "episode_count": 7,
+      "episode_counts_by_line": {
+        "A": 3,
+        "J": 2,
+        "L": 2
+      },
+      "issue_id": "DIBO-JP-0001",
+      "lineage_age_days": null,
+      "lineage_span_days": 2544,
+      "nodes": [
+        {
+          "branch_node": true,
+          "date": "2018-01-30",
+          "episode_id": "DIBO-JP-0001-E001",
+          "indegree": 0,
+          "institution": "Sendai District Court",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 2,
+          "root": true,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2019-04-24",
+          "episode_id": "DIBO-JP-0001-E002",
+          "indegree": 1,
+          "institution": "National Diet of Japan",
+          "line": "L",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2019-04-24",
+          "episode_id": "DIBO-JP-0001-E003",
+          "indegree": 1,
+          "institution": "Ministry of Health, Labour and Welfare and prefectural governments",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 0,
+          "root": false,
+          "sink": true
+        },
+        {
+          "branch_node": true,
+          "date": "2024-07-03",
+          "episode_id": "DIBO-JP-0001-E004",
+          "indegree": 1,
+          "institution": "Supreme Court of Japan, Grand Bench",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 2,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2024-07-17",
+          "episode_id": "DIBO-JP-0001-E005",
+          "indegree": 1,
+          "institution": "Prime Minister of Japan and Government of Japan",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 0,
+          "root": false,
+          "sink": true
+        },
+        {
+          "branch_node": false,
+          "date": "2024-10-08",
+          "episode_id": "DIBO-JP-0001-E006",
+          "indegree": 1,
+          "institution": "National Diet of Japan",
+          "line": "L",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-01-17",
+          "episode_id": "DIBO-JP-0001-E007",
+          "indegree": 1,
+          "institution": "Children and Families Agency, prefectural governments, and recognition commission",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 0,
+          "root": false,
+          "sink": true
+        }
+      ],
+      "same_line_latency": {
+        "count": 1,
+        "max_days": 2346,
+        "mean_days": 2346.0,
+        "min_days": 2346
+      },
+      "transition_count": 6,
+      "transition_counts_by_line_pair": {
+        "A->A": 0,
+        "A->J": 0,
+        "A->L": 0,
+        "J->A": 1,
+        "J->J": 1,
+        "J->L": 2,
+        "L->A": 2,
+        "L->J": 0,
+        "L->L": 0
+      },
+      "warnings": [],
+      "weakly_connected_components": 1
+    },
+    {
+      "cross_line_latency": {
+        "count": 6,
+        "max_days": 3773,
+        "mean_days": 1285.0,
+        "min_days": 25
+      },
+      "edges": [
+        {
+          "cross_line": true,
+          "edge_latency_days": 3543,
+          "from_episode": "DIBO-JP-0002-E001",
+          "from_line": "A",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0002-E002",
+          "to_line": "J",
+          "transition_id": "DIBO-JP-0002-T001"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 3773,
+          "from_episode": "DIBO-JP-0002-E001",
+          "from_line": "A",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0002-E003",
+          "to_line": "J",
+          "transition_id": "DIBO-JP-0002-T002"
+        },
+        {
+          "cross_line": false,
+          "edge_latency_days": 805,
+          "from_episode": "DIBO-JP-0002-E002",
+          "from_line": "J",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0002-E004",
+          "to_line": "J",
+          "transition_id": "DIBO-JP-0002-T003"
+        },
+        {
+          "cross_line": false,
+          "edge_latency_days": 575,
+          "from_episode": "DIBO-JP-0002-E003",
+          "from_line": "J",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0002-E005",
+          "to_line": "J",
+          "transition_id": "DIBO-JP-0002-T004"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 147,
+          "from_episode": "DIBO-JP-0002-E004",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0002-E006",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0002-T005"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 147,
+          "from_episode": "DIBO-JP-0002-E005",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0002-E006",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0002-T006"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 25,
+          "from_episode": "DIBO-JP-0002-E006",
+          "from_line": "A",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0002-E007",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0002-T007"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 75,
+          "from_episode": "DIBO-JP-0002-E007",
+          "from_line": "L",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0002-E008",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0002-T008"
+        }
+      ],
+      "episode_count": 8,
+      "episode_counts_by_line": {
+        "A": 3,
+        "J": 4,
+        "L": 1
+      },
+      "issue_id": "DIBO-JP-0002",
+      "lineage_age_days": null,
+      "lineage_span_days": 4595,
+      "nodes": [
+        {
+          "branch_node": true,
+          "date": "2013-08-01",
+          "episode_id": "DIBO-JP-0002-E001",
+          "indegree": 0,
+          "institution": "Ministry of Health, Labour and Welfare",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 2,
+          "root": true,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2023-04-14",
+          "episode_id": "DIBO-JP-0002-E002",
+          "indegree": 1,
+          "institution": "Osaka High Court",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2023-11-30",
+          "episode_id": "DIBO-JP-0002-E003",
+          "indegree": 1,
+          "institution": "Nagoya High Court",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-06-27",
+          "episode_id": "DIBO-JP-0002-E004",
+          "indegree": 1,
+          "institution": "Supreme Court of Japan, Third Petty Bench",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-06-27",
+          "episode_id": "DIBO-JP-0002-E005",
+          "indegree": 1,
+          "institution": "Supreme Court of Japan, Third Petty Bench",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-11-21",
+          "episode_id": "DIBO-JP-0002-E006",
+          "indegree": 2,
+          "institution": "Ministry of Health, Labour and Welfare",
+          "line": "A",
+          "multiple_incoming": true,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-12-16",
+          "episode_id": "DIBO-JP-0002-E007",
+          "indegree": 1,
+          "institution": "National Diet of Japan",
+          "line": "L",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2026-03-01",
+          "episode_id": "DIBO-JP-0002-E008",
+          "indegree": 1,
+          "institution": "Ministry of Health, Labour and Welfare and local public-assistance authorities",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 0,
+          "root": false,
+          "sink": true
+        }
+      ],
+      "same_line_latency": {
+        "count": 2,
+        "max_days": 805,
+        "mean_days": 690.0,
+        "min_days": 575
+      },
+      "transition_count": 8,
+      "transition_counts_by_line_pair": {
+        "A->A": 0,
+        "A->J": 2,
+        "A->L": 1,
+        "J->A": 2,
+        "J->J": 2,
+        "J->L": 0,
+        "L->A": 1,
+        "L->J": 0,
+        "L->L": 0
+      },
+      "warnings": [],
+      "weakly_connected_components": 1
+    },
+    {
+      "cross_line_latency": {
+        "count": 1,
+        "max_days": 63,
+        "mean_days": 63.0,
+        "min_days": 63
+      },
+      "edges": [
+        {
+          "cross_line": false,
+          "edge_latency_days": 321,
+          "from_episode": "DIBO-JP-0003-E001",
+          "from_line": "A",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0003-E002",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0003-T001"
+        },
+        {
+          "cross_line": false,
+          "edge_latency_days": 92,
+          "from_episode": "DIBO-JP-0003-E002",
+          "from_line": "A",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0003-E003",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0003-T002"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 63,
+          "from_episode": "DIBO-JP-0003-E003",
+          "from_line": "A",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0003-E004",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0003-T003"
+        }
+      ],
+      "episode_count": 4,
+      "episode_counts_by_line": {
+        "A": 3,
+        "J": 0,
+        "L": 1
+      },
+      "issue_id": "DIBO-JP-0003",
+      "lineage_age_days": null,
+      "lineage_span_days": 476,
+      "nodes": [
+        {
+          "branch_node": false,
+          "date": "2025-03-28",
+          "episode_id": "DIBO-JP-0003-E001",
+          "indegree": 0,
+          "institution": "Minister of Justice and Legislative Council",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": true,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2026-02-12",
+          "episode_id": "DIBO-JP-0003-E002",
+          "indegree": 1,
+          "institution": "Legislative Council",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2026-05-15",
+          "episode_id": "DIBO-JP-0003-E003",
+          "indegree": 1,
+          "institution": "Cabinet and Ministry of Justice",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2026-07-17",
+          "episode_id": "DIBO-JP-0003-E004",
+          "indegree": 1,
+          "institution": "National Diet of Japan",
+          "line": "L",
+          "multiple_incoming": false,
+          "outdegree": 0,
+          "root": false,
+          "sink": true
+        }
+      ],
+      "same_line_latency": {
+        "count": 2,
+        "max_days": 321,
+        "mean_days": 206.5,
+        "min_days": 92
+      },
+      "transition_count": 3,
+      "transition_counts_by_line_pair": {
+        "A->A": 2,
+        "A->J": 0,
+        "A->L": 1,
+        "J->A": 0,
+        "J->J": 0,
+        "J->L": 0,
+        "L->A": 0,
+        "L->J": 0,
+        "L->L": 0
+      },
+      "warnings": [],
+      "weakly_connected_components": 1
+    },
+    {
+      "cross_line_latency": {
+        "count": 4,
+        "max_days": 1435,
+        "mean_days": 1133.5,
+        "min_days": 266
+      },
+      "edges": [
+        {
+          "cross_line": false,
+          "edge_latency_days": 2016,
+          "from_episode": "DIBO-JP-0004-E001",
+          "from_line": "J",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0004-E002",
+          "to_line": "J",
+          "transition_id": "DIBO-JP-0004-T001"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 1407,
+          "from_episode": "DIBO-JP-0004-E002",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0004-E003",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0004-T002"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 1426,
+          "from_episode": "DIBO-JP-0004-E002",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0004-E004",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0004-T003"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 1435,
+          "from_episode": "DIBO-JP-0004-E002",
+          "from_line": "J",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0004-E005",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0004-T004"
+        },
+        {
+          "cross_line": false,
+          "edge_latency_days": 51,
+          "from_episode": "DIBO-JP-0004-E003",
+          "from_line": "L",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0004-E006",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0004-T005"
+        },
+        {
+          "cross_line": false,
+          "edge_latency_days": 32,
+          "from_episode": "DIBO-JP-0004-E004",
+          "from_line": "L",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0004-E006",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0004-T006"
+        },
+        {
+          "cross_line": false,
+          "edge_latency_days": 23,
+          "from_episode": "DIBO-JP-0004-E005",
+          "from_line": "L",
+          "same_line": true,
+          "to_episode": "DIBO-JP-0004-E006",
+          "to_line": "L",
+          "transition_id": "DIBO-JP-0004-T007"
+        },
+        {
+          "cross_line": true,
+          "edge_latency_days": 266,
+          "from_episode": "DIBO-JP-0004-E006",
+          "from_line": "L",
+          "same_line": false,
+          "to_episode": "DIBO-JP-0004-E007",
+          "to_line": "A",
+          "transition_id": "DIBO-JP-0004-T008"
+        }
+      ],
+      "episode_count": 7,
+      "episode_counts_by_line": {
+        "A": 1,
+        "J": 2,
+        "L": 4
+      },
+      "issue_id": "DIBO-JP-0004",
+      "lineage_age_days": null,
+      "lineage_span_days": 3740,
+      "nodes": [
+        {
+          "branch_node": false,
+          "date": "2015-12-16",
+          "episode_id": "DIBO-JP-0004-E001",
+          "indegree": 0,
+          "institution": "Supreme Court of Japan, Grand Bench",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": true,
+          "sink": false
+        },
+        {
+          "branch_node": true,
+          "date": "2021-06-23",
+          "episode_id": "DIBO-JP-0004-E002",
+          "indegree": 1,
+          "institution": "Supreme Court of Japan, Grand Bench",
+          "line": "J",
+          "multiple_incoming": false,
+          "outdegree": 3,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-04-30",
+          "episode_id": "DIBO-JP-0004-E003",
+          "indegree": 1,
+          "institution": "House of Representatives",
+          "line": "L",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-05-19",
+          "episode_id": "DIBO-JP-0004-E004",
+          "indegree": 1,
+          "institution": "House of Representatives",
+          "line": "L",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-05-28",
+          "episode_id": "DIBO-JP-0004-E005",
+          "indegree": 1,
+          "institution": "House of Representatives",
+          "line": "L",
+          "multiple_incoming": false,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2025-06-20",
+          "episode_id": "DIBO-JP-0004-E006",
+          "indegree": 3,
+          "institution": "House of Representatives Committee on Judicial Affairs",
+          "line": "L",
+          "multiple_incoming": true,
+          "outdegree": 1,
+          "root": false,
+          "sink": false
+        },
+        {
+          "branch_node": false,
+          "date": "2026-03-13",
+          "episode_id": "DIBO-JP-0004-E007",
+          "indegree": 1,
+          "institution": "Cabinet of Japan",
+          "line": "A",
+          "multiple_incoming": false,
+          "outdegree": 0,
+          "root": false,
+          "sink": true
+        }
+      ],
+      "same_line_latency": {
+        "count": 4,
+        "max_days": 2016,
+        "mean_days": 530.5,
+        "min_days": 23
+      },
+      "transition_count": 8,
+      "transition_counts_by_line_pair": {
+        "A->A": 0,
+        "A->J": 0,
+        "A->L": 0,
+        "J->A": 0,
+        "J->J": 1,
+        "J->L": 3,
+        "L->A": 1,
+        "L->J": 0,
+        "L->L": 3
+      },
+      "warnings": [],
+      "weakly_connected_components": 1
+    }
+  ],
+  "metadata": {
+    "analysis_code_ref": "cdf777b1e34ffebb3617a3ca1504d698c196838e",
+    "as_of_date": null,
+    "canonical_data_ref": "cdf777b1e34ffebb3617a3ca1504d698c196838e",
+    "derived_protocol_version": "v0.1",
+    "engine_version": "v0.1"
+  }
+}
