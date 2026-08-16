@@ -11,6 +11,6 @@ Canonical Observation
 
 DIBO primary observations record source-grounded institutional events. The Derived Descriptive Engine deterministically describes topology and elapsed observed time. Evidence Coding adds structured human interpretation of specific source-grounded questions without overwriting canonical observations or altering deterministic outputs.
 
-See the [Evidence Coding Protocol](PROTOCOL.md) and the practical [Evidence Coding Codebook](CODEBOOK.md).
+See the [Evidence Coding Protocol](PROTOCOL.md), the practical [Evidence Coding Codebook](CODEBOOK.md), and the [Reliability Pilot Kit](pilot/) for deterministic blank-sheet generation, structural validation, and two-coder reliability calculation.
 
 No case-level evidence dataset is included yet. This analyst-facing layer adds no contributor-facing requirements or canonical fields.
