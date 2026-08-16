@@ -148,3 +148,10 @@ Do not commit the filled scope or coder sheets before running the pilot in the f
 ## Post-pilot status
 
 Pilot 001 results, if later produced, do not by themselves validate the Evidence Coding framework. A later replication on another Assessment Scope may be required before stronger reliability claims.
+
+## Phase boundary
+
+This preregistration marks completion of the
+DIBO Methods & Instrumentation v0.1 phase.
+
+The empirical reliability pilot is a separate next phase.
