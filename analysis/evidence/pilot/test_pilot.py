@@ -5,10 +5,12 @@ from __future__ import annotations
 import csv
 import io
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -17,6 +19,8 @@ import pilot  # noqa: E402
 
 class PilotTests(unittest.TestCase):
     def setUp(self) -> None:
+        self.git_verification = mock.patch.object(pilot, "verify_canonical_checkout")
+        self.git_verification.start()
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
         self.data = self.root / "data"
@@ -58,6 +62,7 @@ class PilotTests(unittest.TestCase):
 
     def tearDown(self) -> None:
         self.temp.cleanup()
+        self.git_verification.stop()
 
     @staticmethod
     def _write_csv(path: Path, header: list[str], rows: list[list[str]]) -> None:
@@ -212,6 +217,33 @@ class PilotTests(unittest.TestCase):
     def test_blank_coder_id_rejected(self) -> None:
         with self.assertRaisesRegex(pilot.PilotError, "coder_id must be non-empty"):
             self._generate(coder_id=" ")
+
+    def test_generate_cannot_overwrite_scope_or_canonical_files(self) -> None:
+        protected = [
+            self.scope_path,
+            self.data / "issues.csv",
+            self.data / "episodes.csv",
+            self.data / "transitions.csv",
+        ]
+        before = {path: path.read_bytes() for path in protected}
+        for path in protected:
+            with self.subTest(path=path.name):
+                with self.assertRaisesRegex(pilot.PilotError, "protected input"):
+                    pilot.generate_sheet(self.scope_path, "C01", self.data, path)
+        self.assertEqual(before, {path: path.read_bytes() for path in protected})
+
+    def test_generate_protection_uses_resolved_paths(self) -> None:
+        scope_alias = self.data / ".." / self.scope_path.name
+        before = self.scope_path.read_bytes()
+        with self.assertRaisesRegex(pilot.PilotError, "protected input"):
+            pilot.generate_sheet(self.scope_path, "C01", self.data, scope_alias)
+        self.assertEqual(self.scope_path.read_bytes(), before)
+
+    def test_generate_replaces_an_unprotected_output(self) -> None:
+        output = self.root / "ordinary-output.csv"
+        output.write_text("stale", encoding="utf-8")
+        pilot.generate_sheet(self.scope_path, "C01", self.data, output)
+        self.assertEqual(len(self._read_rows(output)), 2 + (3 * 2))
 
     def test_completed_valid_sheet_passes(self) -> None:
         result = pilot.validate_completed_sheet(
@@ -400,6 +432,65 @@ class PilotTests(unittest.TestCase):
         pilot.calculate_reliability(self.scope_path, first, second, self.data)
         self.assertEqual(before, (first.read_bytes(), second.read_bytes()))
 
+    def test_reliability_cannot_overwrite_scope_sheets_or_canonical_files(self) -> None:
+        first = self._complete("C01")
+        second = self._complete("C02")
+        protected = [
+            self.scope_path,
+            first,
+            second,
+            self.data / "issues.csv",
+            self.data / "episodes.csv",
+            self.data / "transitions.csv",
+        ]
+        before = {path: path.read_bytes() for path in protected}
+        for path in protected:
+            with self.subTest(path=path.name):
+                stderr = io.StringIO()
+                with mock.patch.object(sys, "stderr", stderr):
+                    status = pilot.main(
+                        [
+                            "reliability",
+                            "--scope",
+                            str(self.scope_path),
+                            "--sheet-a",
+                            str(first),
+                            "--sheet-b",
+                            str(second),
+                            "--data-dir",
+                            str(self.data),
+                            "--output",
+                            str(path),
+                        ]
+                    )
+                self.assertEqual(status, 1)
+                self.assertIn("protected input", stderr.getvalue())
+        self.assertEqual(before, {path: path.read_bytes() for path in protected})
+
+    def test_reliability_replaces_an_unprotected_output(self) -> None:
+        first = self._complete("C01")
+        second = self._complete("C02")
+        output = self.root / "ordinary-output.json"
+        output.write_text("stale", encoding="utf-8")
+        status = pilot.main(
+            [
+                "reliability",
+                "--scope",
+                str(self.scope_path),
+                "--sheet-a",
+                str(first),
+                "--sheet-b",
+                str(second),
+                "--data-dir",
+                str(self.data),
+                "--output",
+                str(output),
+            ]
+        )
+        self.assertEqual(status, 0)
+        report = json.loads(output.read_text(encoding="utf-8"))
+        self.assertEqual(report["metadata"]["scope_id"], "SCOPE-SYN")
+
     def test_cli_invalid_input_does_not_write_output(self) -> None:
         self.scope["scope_id"] = ""
         self._write_scope()
@@ -426,6 +517,89 @@ class PilotTests(unittest.TestCase):
         self.assertEqual(status, 1)
         self.assertFalse(output.exists())
         self.assertTrue(stderr.getvalue().startswith("error:"))
+
+
+class GitVerificationTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.checkout = Path(self.temp.name) / "checkout"
+        self.data = self.checkout / "data"
+        self.data.mkdir(parents=True)
+        self.scope = pilot.Scope(
+            scope_id="SCOPE-SYN",
+            issue_id="SYN-ISSUE",
+            tracked_matter="Synthetic tracked matter",
+            included_episode_ids=(),
+            included_transition_ids=(),
+            canonical_data_ref="a" * 40,
+            evidence_protocol_version="v0.1",
+        )
+
+    def tearDown(self) -> None:
+        self.temp.cleanup()
+
+    @staticmethod
+    def _result(returncode: int = 0, stdout: str = "") -> subprocess.CompletedProcess[str]:
+        return subprocess.CompletedProcess([], returncode, stdout=stdout, stderr="")
+
+    def test_git_unavailable_allows_non_git_fixture(self) -> None:
+        with mock.patch.object(pilot, "_run_git", return_value=None):
+            pilot.verify_canonical_checkout(self.scope, self.data)
+
+    def test_non_git_fixture_skips_git_verification(self) -> None:
+        with mock.patch.object(
+            pilot, "_run_git", return_value=self._result(returncode=128)
+        ):
+            pilot.verify_canonical_checkout(self.scope, self.data)
+
+    def test_git_head_mismatch_fails_closed(self) -> None:
+        responses = [
+            self._result(stdout=str(self.checkout)),
+            self._result(stdout="b" * 40 + "\n"),
+        ]
+        with mock.patch.object(pilot, "_run_git", side_effect=responses):
+            with self.assertRaisesRegex(pilot.PilotError, "does not match"):
+                pilot.verify_canonical_checkout(self.scope, self.data)
+
+    def test_dirty_canonical_files_fail_closed(self) -> None:
+        tracked = "\n".join(
+            f"data/{filename}" for filename in pilot.CANONICAL_FILENAMES
+        )
+        responses = [
+            self._result(stdout=str(self.checkout)),
+            self._result(stdout="a" * 40 + "\n"),
+            self._result(stdout=tracked + "\n"),
+            self._result(stdout=" M data/issues.csv\n"),
+        ]
+        with mock.patch.object(pilot, "_run_git", side_effect=responses):
+            with self.assertRaisesRegex(pilot.PilotError, "dirty"):
+                pilot.verify_canonical_checkout(self.scope, self.data)
+
+    def test_untracked_canonical_file_fails_closed(self) -> None:
+        tracked = "\n".join(
+            f"data/{filename}" for filename in pilot.CANONICAL_FILENAMES[:-1]
+        )
+        responses = [
+            self._result(stdout=str(self.checkout)),
+            self._result(stdout="a" * 40 + "\n"),
+            self._result(stdout=tracked + "\n"),
+        ]
+        with mock.patch.object(pilot, "_run_git", side_effect=responses):
+            with self.assertRaisesRegex(pilot.PilotError, "not tracked"):
+                pilot.verify_canonical_checkout(self.scope, self.data)
+
+    def test_matching_clean_git_checkout_passes(self) -> None:
+        tracked = "\n".join(
+            f"data/{filename}" for filename in pilot.CANONICAL_FILENAMES
+        )
+        responses = [
+            self._result(stdout=str(self.checkout)),
+            self._result(stdout="a" * 40 + "\n"),
+            self._result(stdout=tracked + "\n"),
+            self._result(stdout=""),
+        ]
+        with mock.patch.object(pilot, "_run_git", side_effect=responses):
+            pilot.verify_canonical_checkout(self.scope, self.data)
 
 
 if __name__ == "__main__":

@@ -18,6 +18,10 @@ This kit operationalizes the existing Evidence Coding Protocol for a future two-
 
 Do not use adjudicated ratings as the two independent reliability inputs. The tool cannot prove independence; the study procedure must establish a frozen scope, independent coding, locked ratings before discussion, and no AI categorical recommendations before locking.
 
+## Canonical data reference
+
+Real DIBO reliability pilots should use canonical data from a Git checkout. When Git metadata is available, the tool checks `canonical_data_ref` against the exact HEAD of the analyzed checkout and rejects dirty canonical CSV files. Synthetic or other non-Git fixtures cannot receive this Git-level verification and continue without it.
+
 ## Commands
 
 ```text

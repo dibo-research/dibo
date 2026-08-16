@@ -6,6 +6,7 @@ import argparse
 import csv
 import json
 import os
+import subprocess
 import sys
 import tempfile
 from collections import Counter
@@ -51,6 +52,8 @@ CONCEPT_UNIT_TYPE = {
 }
 
 CODES = ["YES", "NO", "INDETERMINATE"]
+
+CANONICAL_FILENAMES = ["issues.csv", "episodes.csv", "transitions.csv"]
 
 
 class PilotError(ValueError):
@@ -174,8 +177,90 @@ def _index_unique(
     return result
 
 
+def _canonical_paths(data_dir: str | Path) -> list[Path]:
+    root = Path(data_dir)
+    return [root / filename for filename in CANONICAL_FILENAMES]
+
+
+def _reject_protected_output(
+    output_path: str | Path,
+    protected_paths: Iterable[str | Path],
+    command: str,
+) -> None:
+    resolved_output = Path(output_path).resolve()
+    resolved_inputs = {Path(path).resolve() for path in protected_paths}
+    if resolved_output in resolved_inputs:
+        raise PilotError(f"{command} output must not overwrite a protected input file")
+
+
+def _run_git(cwd: Path, arguments: list[str]) -> subprocess.CompletedProcess[str] | None:
+    try:
+        return subprocess.run(
+            ["git", "-C", str(cwd), *arguments],
+            capture_output=True,
+            check=False,
+            encoding="utf-8",
+            errors="replace",
+            text=True,
+        )
+    except OSError:
+        return None
+
+
+def verify_canonical_checkout(scope: Scope, data_dir: str | Path) -> None:
+    """Verify the canonical files against Git when data_dir is in a checkout."""
+
+    resolved_data_dir = Path(data_dir).resolve()
+    discovery = _run_git(resolved_data_dir, ["rev-parse", "--show-toplevel"])
+    if discovery is None or discovery.returncode != 0:
+        return
+
+    checkout_text = discovery.stdout.strip()
+    if not checkout_text:
+        raise PilotError("Git checkout discovery returned an empty path")
+    checkout_root = Path(checkout_text).resolve()
+
+    head_result = _run_git(checkout_root, ["rev-parse", "HEAD"])
+    if head_result is None or head_result.returncode != 0 or not head_result.stdout.strip():
+        raise PilotError("cannot determine Git HEAD for canonical data checkout")
+    head_sha = head_result.stdout.strip()
+    if scope.canonical_data_ref != head_sha:
+        raise PilotError(
+            f"scope canonical_data_ref does not match canonical data checkout HEAD {head_sha}"
+        )
+
+    try:
+        relative_paths = [
+            path.resolve().relative_to(checkout_root).as_posix()
+            for path in _canonical_paths(resolved_data_dir)
+        ]
+    except ValueError as exc:
+        raise PilotError("canonical data files are outside the detected Git checkout") from exc
+
+    tracked_result = _run_git(
+        checkout_root,
+        ["ls-tree", "-r", "--name-only", head_sha, "--", *relative_paths],
+    )
+    if tracked_result is None or tracked_result.returncode != 0:
+        raise PilotError("cannot verify canonical files at canonical data checkout HEAD")
+    tracked_paths = set(tracked_result.stdout.splitlines())
+    missing = [path for path in relative_paths if path not in tracked_paths]
+    if missing:
+        raise PilotError(f"canonical file is not tracked at checkout HEAD: {missing[0]}")
+
+    status_result = _run_git(
+        checkout_root,
+        ["status", "--porcelain=v1", "--untracked-files=all", "--", *relative_paths],
+    )
+    if status_result is None or status_result.returncode != 0:
+        raise PilotError("cannot verify canonical file working-tree status")
+    if status_result.stdout.strip():
+        raise PilotError("canonical data files are dirty relative to checkout HEAD")
+
+
 def validate_scope_against_data(scope: Scope, data_dir: str | Path) -> None:
     root = Path(data_dir)
+    verify_canonical_checkout(scope, root)
     issues = _index_unique(
         _read_canonical_rows(root / "issues.csv", ["issue_id"]),
         "issue_id",
@@ -272,6 +357,11 @@ def generate_sheet(
 ) -> None:
     if not isinstance(coder_id, str) or not coder_id.strip():
         raise PilotError("coder_id must be non-empty")
+    _reject_protected_output(
+        output_path,
+        [scope_path, *_canonical_paths(data_dir)],
+        "generate",
+    )
     scope = load_scope(scope_path)
     validate_scope_against_data(scope, data_dir)
     rows = [
@@ -523,18 +613,22 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "validate":
             validate_completed_sheet(args.scope, args.sheet, args.data_dir)
         else:
+            if args.output:
+                _reject_protected_output(
+                    args.output,
+                    [
+                        args.scope,
+                        args.sheet_a,
+                        args.sheet_b,
+                        *_canonical_paths(args.data_dir),
+                    ],
+                    "reliability",
+                )
             report = calculate_reliability(
                 args.scope, args.sheet_a, args.sheet_b, args.data_dir
             )
             output = reliability_json(report)
             if args.output:
-                output_path = Path(args.output).resolve()
-                protected = {
-                    Path(args.sheet_a).resolve(),
-                    Path(args.sheet_b).resolve(),
-                }
-                if output_path in protected:
-                    raise PilotError("reliability output must not overwrite an input sheet")
                 _atomic_write(args.output, output)
             else:
                 sys.stdout.write(output)
