@@ -18,3 +18,7 @@ See the [DIBO Derived Analysis Protocol](PROTOCOL.md) for the v0.1 rules and lim
 ## Executable support
 
 Version v0.1 executable support covers Layer 1 and Layer 2 only. See the [Derived Analysis Protocol](PROTOCOL.md), [engine documentation](ENGINE.md), and [Python engine](engine.py). Layer 3 remains evidence-based and non-automated.
+
+## Evidence coding
+
+The [Evidence Coding sublayer](evidence/) prepares structured, source-grounded evidence inputs for future evaluative constructs while preserving the existing three-layer architecture. It is analyst-facing, does not alter canonical observations or deterministic outputs, and is not itself an evaluative assessment.
